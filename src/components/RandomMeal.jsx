@@ -4,11 +4,9 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-
-function RandomMeal({addFav}) {
+function RandomMeal({ addFav }) {
   const [meal, setMeal] = useState(null);
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const fetchRandomMeal = async () => {
     const response = await fetch(
       "https://www.themealdb.com/api/json/v1/1/random.php"
@@ -71,9 +69,9 @@ function RandomMeal({addFav}) {
             Watch Recipe Video
           </a>
           <button onClick={() => handleFavouriteClick(meal)}>
-              {" "}
-              Add Favourite{" "}
-            </button>
+            {" "}
+            Add Favourite{" "}
+          </button>
         </div>
       ) : (
         <p>Loading...</p>
