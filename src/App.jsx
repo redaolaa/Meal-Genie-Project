@@ -28,7 +28,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/randommeal" element={<RandomMeal />} />
+        <Route path="/randommeal" element={<RandomMeal addFav={addFav} />} />
         <Route
           path="/searchbyname"
           element={<SearchByName addFav={addFav} />}

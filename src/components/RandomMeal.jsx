@@ -4,9 +4,11 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function RandomMeal() {
-  const [meal, setMeal] = useState(null);
 
+
+function RandomMeal({addFav}) {
+  const [meal, setMeal] = useState(null);
+  const navigate= useNavigate()
   const fetchRandomMeal = async () => {
     const response = await fetch(
       "https://www.themealdb.com/api/json/v1/1/random.php"
@@ -22,9 +24,10 @@ function RandomMeal() {
     fetchRandomMeal();
   }, []);
 
-  // const handleBackButton = () => {
-  // navigate("/searchbyname");
-  // };
+  const handleFavouriteClick = (meal) => {
+    addFav(meal);
+    navigate("/favourites");
+  };
 
   const renderIngredients = () => {
     if (!meal) return null;
@@ -67,6 +70,10 @@ function RandomMeal() {
           <a href={meal.strYoutube} target="_blank" rel="noopener noreferrer">
             Watch Recipe Video
           </a>
+          <button onClick={() => handleFavouriteClick(meal)}>
+              {" "}
+              Add Favourite{" "}
+            </button>
         </div>
       ) : (
         <p>Loading...</p>

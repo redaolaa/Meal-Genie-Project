@@ -12,7 +12,7 @@ function Favourites({ favourites }) {
   return (
     <div>
       <h1>My Favourites</h1>
-      <button onClick={() => handleBackButton()}> Return </button>
+      <button onClick={() => handleBackButton()}> Return to Find Recipes </button>
       {/* <Link to="/searchbyname" className="navbar-item">Back to Recipe Search</Link> */}
 
       {favourites.length > 0 ? (
