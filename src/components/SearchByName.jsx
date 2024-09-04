@@ -2,15 +2,15 @@
 
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Favourites from "./Favourites";
 
-function SearchByName({addFav}) {
+function SearchByName({ addFav }) {
   const [searchMeal, setSearchMeal] = useState("");
   const [mealData, setMealData] = useState([]); // stores the fetched meal data from API
+  const navigate = useNavigate();
 
-
-
-  
   const fetchMeals = async () => {
     const response = await fetch(
       `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchMeal}`
@@ -27,6 +27,31 @@ function SearchByName({addFav}) {
   const handleSearch = (event) => {
     event.preventDefault();
     fetchMeals();
+    setSearchMeal("");
+  };
+
+  const handleFavouriteClick = (meal) => {
+    addFav(meal);
+    navigate("/favourites");
+  };
+
+  const renderIngredients = (meal) => {
+    if (!meal) return null;
+
+    const ingredients = [];
+    for (let i = 1; i <= 20; i++) {
+      const ingredient = meal[`strIngredient${i}`];
+      const measure = meal[`strMeasure${i}`];
+      if (ingredient && ingredient.trim() !== "") {
+        ingredients.push(
+          <li key={i}>
+            {measure && measure.trim() !== "" ? `${measure} ` : ""}
+            {ingredient}
+          </li>
+        );
+      }
+    }
+    return ingredients;
   };
 
   return (
@@ -54,13 +79,18 @@ function SearchByName({addFav}) {
             <p>
               <strong>Area:</strong> {meal.strArea}
             </p>
+            <h3>Ingredients</h3>
+            <ul>{renderIngredients(meal)}</ul>
             <p>
               <strong>Instructions:</strong> {meal.strInstructions}
             </p>
             <a href={meal.strYoutube} target="_blank" rel="noopener noreferrer">
               Watch Recipe Video
             </a>
-            <button onClick={() => addFav(meal)}> Add Favourite </button>
+            <button onClick={() => handleFavouriteClick(meal)}>
+              {" "}
+              Add Favourite{" "}
+            </button>
           </div>
         ))}
       </div>

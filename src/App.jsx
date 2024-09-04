@@ -15,13 +15,12 @@ const App = () => {
 
   const addFav = (meal) => {
     setFavourites((prevFavourites) => {
-const clonedFavourites= structuredClone(prevFavourites);
-if (!clonedFavourites.some((fav)=> fav.idMeal === meal.idMeal)) {
-  clonedFavourites.push(meal);
-}
- return clonedFavourites
-    })
-      
+      const clonedFavourites = structuredClone(prevFavourites);
+      if (!clonedFavourites.some((fav) => fav.idMeal === meal.idMeal)) {
+        clonedFavourites.push(meal);
+      }
+      return clonedFavourites;
+    });
   };
 
   return (
