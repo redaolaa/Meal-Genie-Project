@@ -13,6 +13,7 @@ function Navbar() {
                 <Link to="/" className="navbar-item">Home</Link>
                 <Link to="/randommeal" className="navbar-item">Random Meal Recipe</Link>
                 <Link to="/searchbyname" className="navbar-item">Find Recipes</Link>
+                <Link to="/favourites" className="navbar-item">Favourite</Link>
                 {/* <Link to="/products/sage-barista-pro" className="navbar-item">
                   Best Coffee Machine
                 </Link> */}
