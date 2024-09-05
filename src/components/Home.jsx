@@ -9,8 +9,10 @@ function Home() {
     <section className="hero is-link is-fullheight-with-navbar is-link">
       <div className="homepage-card">
         <div className="container">
-          <h4 className="title">Home Page</h4>
-           
+          <h4 className="title">Welcome to Meal Genie App</h4>
+           <div>
+            <p>Find meal with Recipes</p>
+           </div>
         </div>
       </div>
     </section>

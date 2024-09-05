@@ -98,3 +98,49 @@ function SearchByName({ addFav }) {
 }
 
 export default SearchByName;
+
+//  creating a MealData component which accepts props that we can pass through when mapping
+// instead of repeating code, we write once let that component render what we need
+// we can still reuse a lot od the code, we jsut need to :
+// 1) create component to be reusable by passing props that we need
+// 2) we will still use eg meal.strCategory when mapping, but instead we will pass it to the new component with whatever prop we need it
+/// so for meal.strCategory we map through and get meal.strCategory like we done before but this time, we
+// pass meal.strCategory into our new component, and we jsut pass it to catergory instead and make sure we use it like this inside
+// our MealData component, as its waiting for prop called category and we just pass it along:
+ //COMPONENT USAGE
+// {/* <MealData
+// catergory={ meal.catergory}
+// image={ meal.image}
+// /> */}
+
+// JSX EXAMPLEE
+//             <strong>Category:</strong> {catergory}
+//COMPONENT 
+// const MealData = ({catergory, area, image, imageAlt, ingredients}) => {
+   
+//   return (
+//     <div key={meal.idMeal}>
+//           <h2>{meal.strMeal}</h2>
+//           <img src={image} alt={imageAlt} width="200" />
+//           <p>
+//             <strong>Category:</strong> {meal.strCategory}
+//           </p>
+//           <p>
+//             <strong>Area:</strong> {meal.strArea}
+//           </p>
+//           <h3>Ingredients</h3>
+//           <ul>{renderIngredients(meal)}</ul>
+//           <p>
+//             <strong>Instructions:</strong> {meal.strInstructions}
+//           </p>
+//           <a href={meal.strYoutube} target="_blank" rel="noopener noreferrer">
+//             Watch Recipe Video
+//           </a>
+//           <button onClick={() => handleFavouriteClick(meal)}>
+//             {" "}
+//             Add Favourite{" "}
+//           </button>
+//         </div>
+//   )
+      
+// }
