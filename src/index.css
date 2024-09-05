@@ -1,7 +1,7 @@
 :root {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #1a1a1a;
+  background-color: white;
 }
 
 a {
@@ -34,15 +34,15 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #ca8206;
   border: 2px solid white;
-  color: #646cff;
+  color: white;
   cursor: pointer;
   transition: border-color 0.25s;
   margin-bottom: 30px;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #4a3003;
 }
 button:focus,
 button:focus-visible {

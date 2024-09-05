@@ -2,7 +2,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import 'bulma/css/bulma.min.css'
+import "bulma/css/bulma.min.css";
+
+import AOS from "aos"; // Import AOS for global animation initialisation
+import "aos/dist/aos.css";
 
 import "./App.css";
 import Home from "./components/Home";
@@ -21,8 +24,6 @@ const getSavedFavourites = () => {
   return getFavourites || []; // Return an empty array if no favourites are found
 };
 
-
-
 const App = () => {
   const [favourites, setFavourites] = useState(getSavedFavourites);
 
@@ -38,11 +39,13 @@ const App = () => {
 
   const removeFav = (mealId) => {
     setFavourites((prevFavourites) => {
-      const updatedFavourites = prevFavourites.filter((meal) => meal.idMeal !== mealId);
+      const updatedFavourites = prevFavourites.filter(
+        (meal) => meal.idMeal !== mealId
+      );
       // console.log("debugging:", updatedFavourites)
       return updatedFavourites;
-    })
-  }
+    });
+  };
 
   // useEffect(() => {
   //   const getFavourites = JSON.parse(localStorage.getItem("favourites"));
@@ -65,10 +68,14 @@ const App = () => {
     // local storage has TWO syntax: 1) setItem 2) getItem
   }, [favourites]);
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <Router>
       <Navbar />
-      <br/>
+      <br />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/randommeal" element={<RandomMeal addFav={addFav} />} />
@@ -78,7 +85,7 @@ const App = () => {
         />
         <Route
           path="/favourites"
-          element={<Favourites favourites={favourites} removeFav = {removeFav}/>}
+          element={<Favourites favourites={favourites} removeFav={removeFav} />}
         />
       </Routes>
     </Router>

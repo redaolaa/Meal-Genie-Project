@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function RandomMeal({ addFav }) {
   const [meal, setMeal] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const fetchRandomMeal = async () => {
     const response = await fetch(
@@ -15,19 +15,19 @@ function RandomMeal({ addFav }) {
     const data = await response.json();
 
     if (data.meals) {
-      const fetchedMeal = data.meals[0]
-      setMeal(fetchedMeal)
-      localStorage.setItem("randomMeal", JSON.stringify(fetchedMeal))
+      const fetchedMeal = data.meals[0];
+      setMeal(fetchedMeal);
+      localStorage.setItem("randomMeal", JSON.stringify(fetchedMeal));
     }
   };
 
   useEffect(() => {
-    const storedMeal = localStorage.getItem("randomMeal") // store the random meal to prevent refresh
+    const storedMeal = localStorage.getItem("randomMeal"); // store the random meal to prevent refresh
     if (storedMeal) {
-      setMeal(JSON.parse(storedMeal))
+      setMeal(JSON.parse(storedMeal));
     } else {
-      fetchRandomMeal()
-    };
+      fetchRandomMeal();
+    }
   }, []);
 
   const handleFavouriteClick = (meal) => {
@@ -55,53 +55,58 @@ function RandomMeal({ addFav }) {
   };
 
   const youtubeEmbedLink = (youtubeUrl) => {
-    if (!youtubeUrl) return ""
-    const urlParts = youtubeUrl.split('v=')
-    const videoId = urlParts[1]?.split('&')[0]
-    return `https://www.youtube.com/embed/${videoId}`
-  }
+    if (!youtubeUrl) return "";
+    const urlParts = youtubeUrl.split("v=");
+    const videoId = urlParts[1]?.split("&")[0];
+    return `https://www.youtube.com/embed/${videoId}`;
+  };
 
-  const embedUrl = ({meal}) => {
-  meal.strYoutube ? youtubeEmbedLink(meal.strYoutube) : ''}
+  const embedUrl = ({ meal }) => {
+    meal.strYoutube ? youtubeEmbedLink(meal.strYoutube) : "";
+  };
 
   return (
     <>
-    <div className="random-button">
-      <button onClick={fetchRandomMeal}> Randomise </button>
-    </div>
+      <div className="random-button">
+        <button onClick={fetchRandomMeal}> Randomise </button>
+      </div>
       {meal ? (
-        <div className="random-meal-card">
+        <div
+          className="random-meal-card"
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="500">
           <h2>{meal.strMeal}</h2>
           <div className="meal-card-intro">
-          <section className="meal-image">
-          <img src={meal.strMealThumb} alt={meal.strMeal} width="200" />
-          <p>
-            <strong>Category:</strong> {meal.strCategory}
-          </p>
-          <p>
-            <strong>Area:</strong> {meal.strArea}
-          </p>
-          </section>
-          <section className="meal-ingridients">
-          <h3>Ingredients</h3>
-          <ul>{renderIngredients()}</ul>
-          </section>
+            <section className="meal-image">
+              <img src={meal.strMealThumb} alt={meal.strMeal} width="200" />
+              <p>
+                <strong>Category:</strong> {meal.strCategory}
+              </p>
+              <p>
+                <strong>Area:</strong> {meal.strArea}
+              </p>
+            </section>
+            <section className="meal-ingridients">
+              <h3>Ingredients</h3>
+              <ul>{renderIngredients()}</ul>
+            </section>
           </div>
           <section className="meal-instruction">
-          <p>
-            <strong>Instructions:</strong> {meal.strInstructions}
-          </p>
+            <p>
+              <strong>Instructions:</strong> {meal.strInstructions}
+            </p>
           </section>
-          
+
           {meal.strYoutube && (
             <iframe
-             src = {youtubeEmbedLink(meal.strYoutube)}
-             title={`${meal.strMeal} YouTube video`}
-             width={560}
-             height={315}
-            ></iframe>)}
-            <br/>
-            <br/>
+              src={youtubeEmbedLink(meal.strYoutube)}
+              title={`${meal.strMeal} YouTube video`}
+              width={560}
+              height={315}></iframe>
+          )}
+          <br />
+          <br />
           <button onClick={() => handleFavouriteClick(meal)}>
             {" "}
             Add Favourite{" "}

@@ -4,8 +4,6 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-
 function SearchByName({ addFav }) {
   const [searchMeal, setSearchMeal] = useState("");
   const [mealData, setMealData] = useState([]); // stores the fetched meal data from API
@@ -54,17 +52,16 @@ function SearchByName({ addFav }) {
     return ingredients;
   };
 
- 
-    const youtubeEmbedLink = (youtubeUrl) => {
-      if (!youtubeUrl) return ""
-      const urlParts = youtubeUrl.split('v=')
-      const videoId = urlParts[1]?.split('&')[0]
-      return `https://www.youtube.com/embed/${videoId}`
-    }
+  const youtubeEmbedLink = (youtubeUrl) => {
+    if (!youtubeUrl) return "";
+    const urlParts = youtubeUrl.split("v=");
+    const videoId = urlParts[1]?.split("&")[0];
+    return `https://www.youtube.com/embed/${videoId}`;
+  };
 
-
-    const embedUrl = ({meal}) => {
-    meal.strYoutube ? youtubeEmbedLink(meal.strYoutube) : ''}
+  const embedUrl = ({ meal }) => {
+    meal.strYoutube ? youtubeEmbedLink(meal.strYoutube) : "";
+  };
 
   return (
     <>
@@ -83,40 +80,38 @@ function SearchByName({ addFav }) {
           <div key={meal.idMeal} className="random-meal-card">
             <h2>{meal.strMeal}</h2>
             <div className="meal-card-intro">
-            <section className="meal-image">
-            <img src={meal.strMealThumb} alt={meal.strMeal} width="200" />
-            <p>
-              <strong>Category:</strong> {meal.strCategory}
-            </p>
-            <p>
-              <strong>Area:</strong> {meal.strArea}
-            </p>
-            </section>
-            <section className="meal-ingridients">
-            <h3>Ingredients</h3>
-            <ul>{renderIngredients(meal)}</ul>
-            </section>
+              <section className="meal-image">
+                <img src={meal.strMealThumb} alt={meal.strMeal} width="200" />
+                <p>
+                  <strong>Category:</strong> {meal.strCategory}
+                </p>
+                <p>
+                  <strong>Area:</strong> {meal.strArea}
+                </p>
+              </section>
+              <section className="meal-ingridients">
+                <h3>Ingredients</h3>
+                <ul>{renderIngredients(meal)}</ul>
+              </section>
             </div>
             <section className="meal-instruction">
-            <p>
-              <strong>Instructions:</strong> {meal.strInstructions}
-            </p>
+              <p>
+                <strong>Instructions:</strong> {meal.strInstructions}
+              </p>
             </section>
-            
             {meal.strYoutube && (
-            <iframe
-             src = {youtubeEmbedLink(meal.strYoutube)}
-             title={`${meal.strMeal} YouTube video`}
-             width={560}
-             height={315}
-            ></iframe>)}
-            <br/> <br/>
+              <iframe
+                src={youtubeEmbedLink(meal.strYoutube)}
+                title={`${meal.strMeal} YouTube video`}
+                width={560}
+                height={315}></iframe>
+            )}
+            <br /> <br />
             <button onClick={() => handleFavouriteClick(meal)}>
               {" "}
               Add Favourite{" "}
             </button>
           </div>
-          
         ))}
       </div>
     </>
@@ -133,7 +128,7 @@ export default SearchByName;
 /// so for meal.strCategory we map through and get meal.strCategory like we done before but this time, we
 // pass meal.strCategory into our new component, and we jsut pass it to catergory instead and make sure we use it like this inside
 // our MealData component, as its waiting for prop called category and we just pass it along:
- //COMPONENT USAGE
+//COMPONENT USAGE
 // {/* <MealData
 // catergory={ meal.catergory}
 // image={ meal.image}
@@ -141,9 +136,9 @@ export default SearchByName;
 
 // JSX EXAMPLEE
 //             <strong>Category:</strong> {catergory}
-//COMPONENT 
+//COMPONENT
 // const MealData = ({catergory, area, image, imageAlt, ingredients}) => {
-   
+
 //   return (
 //     <div key={meal.idMeal}>
 //           <h2>{meal.strMeal}</h2>
@@ -168,5 +163,5 @@ export default SearchByName;
 //           </button>
 //         </div>
 //   )
-      
+
 // }

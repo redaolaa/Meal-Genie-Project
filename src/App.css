@@ -32,7 +32,8 @@ header {
   cursor: pointer;
 }
 
-.random-button, button {
+.random-button,
+button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,18 +46,55 @@ ul {
   margin: 0;
 }
 
+strong {
+  color: black;
+}
 
 .homepage-container {
-  min-height: 100%;
-  background-image: url('./images/Family-dinner.jpg');
+  height: 40%;
+  background-image: url("images/Family-dinner.jpg");
   background-size: cover;
   color: rgb(68, 68, 68);
   font-size: 50px;
   font-weight: 700;
+  background-color: black;
+}
+
+.homepage-container img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.homepage-card-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage-text {
+  font-size: 20px;
+  color: black;
+  font-weight: 900;
+  margin-top: 20px;
+  justify-content: center;
+  text-align: center;
+}
+
+.homepage-text p {
+  font-size: 28px;
+  color: #734060;
+  font-weight: 900;
+  margin-top: 20px;
 }
 
 .transparent-image {
   opacity: 3;
+}
+
+.genieLamp {
+
+height: 80px;
+
 }
 
 h2 {
@@ -72,11 +110,18 @@ h2 {
 }
 
 .random-meal-card {
-  background-color: #213547;
+  background-color: #f2f2f2;
   max-width: 900px;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
+  color: black;
+}
+
+/* this is the title for the meal cards */
+.random-meal-card h2,
+strong {
+  color: #734060;
 }
 
 .meal-card-intro {
@@ -108,31 +153,32 @@ h2 {
 .search-form {
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   margin-bottom: 40px;
 }
-
 
 .search-form input {
   margin-right: 10px;
   padding: 10px;
   border-radius: 5px;
-  border: 2px solid #646cff;
+  border: 2px solid #edb654;
   font-size: 20px;
+  background-color: whitesmoke;
+  color: black;
 }
 
 .search-form button {
   padding: 10px 20px;
   border-radius: 5px;
-  background-color: #646cff;
+  background-color: #734060;
   color: white;
   border: none;
   cursor: pointer;
   display: flex;
-  align-items: center; 
+  align-items: center;
   margin: 0;
 }
 
 .search-form button:hover {
-  background-color: #535bf2;
+  background-color: #644d25;
 }
