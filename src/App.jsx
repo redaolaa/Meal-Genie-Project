@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import 'bulma/css/bulma.min.css'
 
 import "./App.css";
 import Home from "./components/Home";
@@ -68,7 +69,6 @@ const App = () => {
     <Router>
       <Navbar />
       <br/>
-      <hr/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/randommeal" element={<RandomMeal addFav={addFav} />} />

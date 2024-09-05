@@ -6,11 +6,12 @@ function Home() {
   }, [])
 
   return (
-    <section className="hero is-link is-fullheight-with-navbar is-link">
+    <section className="homepage-container">
+      <img src="./images/Family-dinner.jpg" className="transparent-image"/>
       <div className="homepage-card">
         <div className="container">
-          <h4 className="title">Welcome to Meal Genie App</h4>
            <div>
+            <p>Welcome to Meal Genie App</p>
             <p>Find meal with Recipes</p>
            </div>
         </div>

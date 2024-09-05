@@ -66,11 +66,14 @@ function RandomMeal({ addFav }) {
 
   return (
     <>
-      <h4>Random Meal Page</h4>
+    <div className="random-button">
       <button onClick={fetchRandomMeal}> Randomise </button>
+    </div>
       {meal ? (
         <div className="random-meal-card">
           <h2>{meal.strMeal}</h2>
+          <div className="meal-card-intro">
+          <section className="meal-image">
           <img src={meal.strMealThumb} alt={meal.strMeal} width="200" />
           <p>
             <strong>Category:</strong> {meal.strCategory}
@@ -78,11 +81,18 @@ function RandomMeal({ addFav }) {
           <p>
             <strong>Area:</strong> {meal.strArea}
           </p>
+          </section>
+          <section className="meal-ingridients">
           <h3>Ingredients</h3>
           <ul>{renderIngredients()}</ul>
+          </section>
+          </div>
+          <section className="meal-instruction">
           <p>
             <strong>Instructions:</strong> {meal.strInstructions}
           </p>
+          </section>
+          
           {meal.strYoutube && (
             <iframe
              src = {youtubeEmbedLink(meal.strYoutube)}
@@ -90,6 +100,8 @@ function RandomMeal({ addFav }) {
              width={560}
              height={315}
             ></iframe>)}
+            <br/>
+            <br/>
           <button onClick={() => handleFavouriteClick(meal)}>
             {" "}
             Add Favourite{" "}

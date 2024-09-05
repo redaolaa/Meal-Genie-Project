@@ -68,9 +68,7 @@ function SearchByName({ addFav }) {
 
   return (
     <>
-      <h4> Search By Name Page</h4>
-
-      <form onSubmit={handleSearch}>
+      <form onSubmit={handleSearch} className="search-form">
         <input
           type="text"
           placeholder="Enter meal name"
@@ -82,8 +80,10 @@ function SearchByName({ addFav }) {
 
       <div>
         {mealData.map((meal) => (
-          <div key={meal.idMeal} className="searched-meal-card">
+          <div key={meal.idMeal} className="random-meal-card">
             <h2>{meal.strMeal}</h2>
+            <div className="meal-card-intro">
+            <section className="meal-image">
             <img src={meal.strMealThumb} alt={meal.strMeal} width="200" />
             <p>
               <strong>Category:</strong> {meal.strCategory}
@@ -91,11 +91,18 @@ function SearchByName({ addFav }) {
             <p>
               <strong>Area:</strong> {meal.strArea}
             </p>
+            </section>
+            <section className="meal-ingridients">
             <h3>Ingredients</h3>
             <ul>{renderIngredients(meal)}</ul>
+            </section>
+            </div>
+            <section className="meal-instruction">
             <p>
               <strong>Instructions:</strong> {meal.strInstructions}
             </p>
+            </section>
+            
             {meal.strYoutube && (
             <iframe
              src = {youtubeEmbedLink(meal.strYoutube)}
@@ -103,11 +110,13 @@ function SearchByName({ addFav }) {
              width={560}
              height={315}
             ></iframe>)}
+            <br/> <br/>
             <button onClick={() => handleFavouriteClick(meal)}>
               {" "}
               Add Favourite{" "}
             </button>
           </div>
+          
         ))}
       </div>
     </>

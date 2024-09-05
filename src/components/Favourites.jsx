@@ -41,13 +41,15 @@ function Favourites({ favourites, removeFav }) {
 
   return (
     <div>
-      <h1>My Favourites</h1>
+      <div className="random-button">
       <button onClick={() => handleBackButton()}> Return to Find Recipes </button>
-
+      </div>
       {favourites.length > 0 ? (
         favourites.map((meal, index) => (
-          <div key={index} className="favorite-meal-card">
+          <div key={index} className="random-meal-card">
             <h2>{meal.strMeal}</h2>
+            <div className="meal-card-intro">
+            <section className="meal-image">
             <img src={meal.strMealThumb} alt={meal.strMeal} width="200" />
             <p>
               <strong>Category:</strong> {meal.strCategory}
@@ -55,11 +57,17 @@ function Favourites({ favourites, removeFav }) {
             <p>
               <strong>Area:</strong> {meal.strArea}
             </p>
+            </section>
+            <section className="meal-ingridients">
             <h3>Ingredients</h3>
             <ul>{renderIngredients(meal)}</ul>
+            </section>
+            </div>
+            <section className="meal-instruction">
             <p>
               <strong>Instructions:</strong> {meal.strInstructions}
             </p>
+            </section>
             {meal.strYoutube && (
             <iframe
              src = {youtubeEmbedLink(meal.strYoutube)}
@@ -67,6 +75,7 @@ function Favourites({ favourites, removeFav }) {
              width={560}
              height={315}
             ></iframe>)}
+            <br/> <br/>
             <button onClick={() => removeFav(meal.idMeal)}>Remove</button>
           </div>
         ))

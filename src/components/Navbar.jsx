@@ -7,8 +7,9 @@ function Navbar() {
     return (
       <>
         <header>
-          <nav className="navbar">
-            <div className="navbar-container">
+        
+        {/* <div className="navbar-brand"/> */}
+          <nav className="navbar is-primary" role="navigation" aria-label="main navigation"> 
               <div className="navbar-brand">
                 <Link to="/" className="navbar-item">Home</Link>
                 <Link to="/randommeal" className="navbar-item">Random Meal Recipe</Link>
@@ -17,7 +18,6 @@ function Navbar() {
                 {/* <Link to="/products/sage-barista-pro" className="navbar-item">
                   Best Coffee Machine
                 </Link> */}
-              </div>
             </div>
           </nav>
         </header>
