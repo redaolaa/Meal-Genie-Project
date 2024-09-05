@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
+
 function SearchByName({ addFav }) {
   const [searchMeal, setSearchMeal] = useState("");
   const [mealData, setMealData] = useState([]); // stores the fetched meal data from API
@@ -62,8 +63,8 @@ function SearchByName({ addFav }) {
     }
 
 
-  const embedUrl = ({meal}) => {
-  meal.strYoutube ? youtubeEmbedLink(meal.strYoutube) : ''}
+    const embedUrl = ({meal}) => {
+    meal.strYoutube ? youtubeEmbedLink(meal.strYoutube) : ''}
 
   return (
     <>

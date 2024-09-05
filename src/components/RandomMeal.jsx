@@ -54,6 +54,16 @@ function RandomMeal({ addFav }) {
     return ingredients;
   };
 
+  const youtubeEmbedLink = (youtubeUrl) => {
+    if (!youtubeUrl) return ""
+    const urlParts = youtubeUrl.split('v=')
+    const videoId = urlParts[1]?.split('&')[0]
+    return `https://www.youtube.com/embed/${videoId}`
+  }
+
+  const embedUrl = ({meal}) => {
+  meal.strYoutube ? youtubeEmbedLink(meal.strYoutube) : ''}
+
   return (
     <>
       <h4>Random Meal Page</h4>
@@ -73,9 +83,13 @@ function RandomMeal({ addFav }) {
           <p>
             <strong>Instructions:</strong> {meal.strInstructions}
           </p>
-          <a href={meal.strYoutube} target="_blank" rel="noopener noreferrer">
-            Watch Recipe Video
-          </a>
+          {meal.strYoutube && (
+            <iframe
+             src = {youtubeEmbedLink(meal.strYoutube)}
+             title={`${meal.strMeal} YouTube video`}
+             width={560}
+             height={315}
+            ></iframe>)}
           <button onClick={() => handleFavouriteClick(meal)}>
             {" "}
             Add Favourite{" "}
