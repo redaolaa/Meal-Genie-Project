@@ -7,9 +7,10 @@ function Home() {
 
   return (
     <section className="hero is-link is-fullheight-with-navbar is-link">
-      <div className="hero-body has-text-centered">
+      <div className="homepage-card">
         <div className="container">
-          <p className="title">Home Page</p>
+          <h4 className="title">Home Page</h4>
+           
         </div>
       </div>
     </section>

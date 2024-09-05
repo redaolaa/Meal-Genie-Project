@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
-import RandomMeal from "./components/randomMeal";
-import SearchByName from "./components/searchByName";
+import RandomMeal from "./components/RandomMeal";
+import SearchByName from "./components/SearchByName";
 import Favourites from "./components/Favourites";
 
 const App = () => {
@@ -23,9 +23,19 @@ const App = () => {
     });
   };
 
+  const removeFav = (mealId) => {
+    setFavourites((prevFavourites) => {
+      const updatedFavourites = prevFavourites.filter((meal) => meal.idMeal !== mealId);
+      // console.log("debugging:", updatedFavourites)
+      return updatedFavourites;
+    })
+  }
+
   return (
     <Router>
       <Navbar />
+      <br/>
+      <hr/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/randommeal" element={<RandomMeal addFav={addFav} />} />
@@ -35,7 +45,7 @@ const App = () => {
         />
         <Route
           path="/favourites"
-          element={<Favourites favourites={favourites} />}
+          element={<Favourites favourites={favourites} removeFav = {removeFav}/>}
         />
       </Routes>
     </Router>

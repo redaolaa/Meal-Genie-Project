@@ -7,8 +7,8 @@ function Navbar() {
     return (
       <>
         <header>
-          <nav className="navbar is-dark">
-            <div className="container">
+          <nav className="navbar">
+            <div className="navbar-container">
               <div className="navbar-brand">
                 <Link to="/" className="navbar-item">Home</Link>
                 <Link to="/randommeal" className="navbar-item">Random Meal Recipe</Link>

@@ -4,7 +4,6 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Favourites from "./Favourites";
 
 function SearchByName({ addFav }) {
   const [searchMeal, setSearchMeal] = useState("");
@@ -70,7 +69,7 @@ function SearchByName({ addFav }) {
 
       <div>
         {mealData.map((meal) => (
-          <div key={meal.idMeal}>
+          <div key={meal.idMeal} className="searched-meal-card">
             <h2>{meal.strMeal}</h2>
             <img src={meal.strMealThumb} alt={meal.strMeal} width="200" />
             <p>

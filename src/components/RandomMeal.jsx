@@ -4,11 +4,10 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-
-function RandomMeal({addFav}) {
+function RandomMeal({ addFav }) {
   const [meal, setMeal] = useState(null);
-  const navigate= useNavigate()
+  const navigate = useNavigate()
+
   const fetchRandomMeal = async () => {
     const response = await fetch(
       "https://www.themealdb.com/api/json/v1/1/random.php"
@@ -16,12 +15,19 @@ function RandomMeal({addFav}) {
     const data = await response.json();
 
     if (data.meals) {
-      setMeal(data.meals[0]); // set fetched meal data
+      const fetchedMeal = data.meals[0]
+      setMeal(fetchedMeal)
+      localStorage.setItem("randomMeal", JSON.stringify(fetchedMeal))
     }
   };
 
   useEffect(() => {
-    fetchRandomMeal();
+    const storedMeal = localStorage.getItem("randomMeal") // store the random meal to prevent refresh
+    if (storedMeal) {
+      setMeal(JSON.parse(storedMeal))
+    } else {
+      fetchRandomMeal()
+    };
   }, []);
 
   const handleFavouriteClick = (meal) => {
@@ -53,7 +59,7 @@ function RandomMeal({addFav}) {
       <h4>Random Meal Page</h4>
       <button onClick={fetchRandomMeal}> Randomise </button>
       {meal ? (
-        <div>
+        <div className="random-meal-card">
           <h2>{meal.strMeal}</h2>
           <img src={meal.strMealThumb} alt={meal.strMeal} width="200" />
           <p>
@@ -71,9 +77,9 @@ function RandomMeal({addFav}) {
             Watch Recipe Video
           </a>
           <button onClick={() => handleFavouriteClick(meal)}>
-              {" "}
-              Add Favourite{" "}
-            </button>
+            {" "}
+            Add Favourite{" "}
+          </button>
         </div>
       ) : (
         <p>Loading...</p>
