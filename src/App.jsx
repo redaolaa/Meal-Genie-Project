@@ -4,16 +4,16 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "bulma/css/bulma.min.css";
-
 import AOS from "aos"; // Import AOS for global animation initialisation
 import "aos/dist/aos.css";
-
 import "./App.css";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import RandomMeal from "./components/RandomMeal";
 import SearchByName from "./components/SearchByName";
 import Favourites from "./components/Favourites";
+
+
 
 const getSavedFavourites = () => {
   const getFavourites = JSON.parse(localStorage.getItem("favourites"));
@@ -27,7 +27,8 @@ const getSavedFavourites = () => {
 
 const App = () => {
   const [favourites, setFavourites] = useState(getSavedFavourites);
-
+  // adding a addFav function. this clones the current favourites array and checks 
+  // if meal is already in the list by comparing idMeal- if not, adds new meal
   const addFav = (meal) => {
     setFavourites((prevFavourites) => {
       const clonedFavourites = structuredClone(prevFavourites);
@@ -37,7 +38,7 @@ const App = () => {
       return clonedFavourites;
     });
   };
-
+// removing a meal from fav list based on the idMeal
   const removeFav = (mealId) => {
     setFavourites((prevFavourites) => {
       const updatedFavourites = prevFavourites.filter(
@@ -48,14 +49,7 @@ const App = () => {
     });
   };
 
-  // useEffect(() => {
-  //   const getFavourites = JSON.parse(localStorage.getItem("favourites"));
-  //   console.log("getFavourites", getFavourites);
-  //   if (getFavourites) {
-  //     setFavourites(getFavourites);
-  //   }
-
-  // }, []);
+  //USING LOCAL STORAGE
 
   useEffect(() => {
     localStorage.setItem("favourites", JSON.stringify(favourites));
@@ -72,6 +66,7 @@ const App = () => {
   useEffect(() => {
     AOS.init();
   }, []);
+
 
   return (
     <Router>
