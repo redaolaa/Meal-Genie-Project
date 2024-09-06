@@ -40,6 +40,7 @@ button {
   justify-content: center;
   align-items: center;
   margin: 0 auto; /* Center horizontally */
+
 }
 
 ul {
@@ -54,7 +55,7 @@ strong {
 
 .homepage-container {
   height: 40%;
-  background-image: url("images/Family-dinner.jpg");
+  /* background-image: url("assets/family-dinner.png"); */
   background-size: cover;
   color: rgb(68, 68, 68);
   font-size: 50px;
