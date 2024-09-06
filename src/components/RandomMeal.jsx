@@ -1,4 +1,5 @@
 // src/components/RandomMeal.jsx
+//testing
 
 import React, { useEffect } from "react";
 import { useState } from "react";
