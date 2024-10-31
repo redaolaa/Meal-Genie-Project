@@ -9,11 +9,6 @@ function RandomMeal({ addFav }) {
   const [meal, setMeal] = useState(null);
   const navigate = useNavigate();
 
-
-
-//  Fetches a random meal from an API and stores it in 
-//both the component's state (meal) and localStorage.
-// This prevents loss of data on page refresh.
   const fetchRandomMeal = async () => {
     const response = await fetch(
       "https://www.themealdb.com/api/json/v1/1/random.php"
@@ -74,7 +69,7 @@ function RandomMeal({ addFav }) {
   return (
     <>
       <div className="random-button">
-        <button onClick={fetchRandomMeal}> Randomise </button>
+        <button className="button is-primary" onClick={fetchRandomMeal}> Randomise </button>
       </div>
       {meal ? (
         <div
@@ -113,7 +108,7 @@ function RandomMeal({ addFav }) {
           )}
           <br />
           <br />
-          <button onClick={() => handleFavouriteClick(meal)}>
+          <button className="button is-primary"  onClick={() => handleFavouriteClick(meal)}>
             {" "}
             Add Favourite{" "}
           </button>

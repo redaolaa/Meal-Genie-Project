@@ -29,23 +29,10 @@ function Favourites({ favourites, removeFav }) {
     return ingredients;
   };
 
-
-
-  // takes the youtube video URL and converts into an embedded URL
-  // this is so that we can insert YT vid into webpage using iframe
   const youtubeEmbedLink = (youtubeUrl) => {
-    // this checks if the input YTURL is empty then returns empty string
     if (!youtubeUrl) return "";
-
-    // splits the 1 input URL @v= and gives 2 parts because after v= holds videoID
     const urlParts = youtubeUrl.split("v=");
-
-    // split this second part at the & symbol (if it exists)
-    // and the [0] takes the first part (which is the video ID).
-
     const videoId = urlParts[1]?.split("&")[0];
-
-    // then we return the embedded video
     return `https://www.youtube.com/embed/${videoId}`;
   };
 
@@ -56,14 +43,11 @@ function Favourites({ favourites, removeFav }) {
   return (
     <div>
       <div className="random-button">
-        <button onClick={() => handleBackButton()}>
+        <button className="button is-primary" onClick={() => handleBackButton()}>
           {" "}
           Return to Find Recipes{" "}
         </button>
       </div>
-
-      {/* maps over the favourites array and displays each favourite meal. */}
-       {/* If the array is empty, it shows a message that no favourites have been added yet. */}
       {favourites.length > 0 ? (
         favourites.map((meal, index) => (
           <div
@@ -101,7 +85,7 @@ function Favourites({ favourites, removeFav }) {
                 height={315}></iframe>
             )}
             <br /> <br />
-            <button onClick={() => removeFav(meal.idMeal)}>Remove</button>
+            <button className="button is-danger" onClick={() => removeFav(meal.idMeal)}>Remove</button>
           </div>
         ))
       ) : (

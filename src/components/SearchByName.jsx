@@ -108,7 +108,7 @@ function SearchByName({ addFav }) {
                 height={315}></iframe>
             )}
             <br /> <br />
-            <button onClick={() => handleFavouriteClick(meal)}>
+            <button className="button is-primary" onClick={() => handleFavouriteClick(meal)}>
               {" "}
               Add Favourite{" "}
             </button>
